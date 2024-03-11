@@ -134,10 +134,14 @@ fun CommentField(isButtonClicked: Boolean, onButtonClicked:(Boolean) -> Unit) {
 fun SubmitButton(isButtonClicked: Boolean, onButtonClicked:(Boolean) -> Unit) {
     var isEnabled by remember { mutableStateOf(true) }
     val context = LocalContext.current
+
+    if (isButtonClicked) {
+        isEnabled = false
+    }
+
     Button(
         onClick = {
             Toast.makeText(context, "Thank you for the feedback!", Toast.LENGTH_LONG).show()
-            isEnabled = false
             onButtonClicked(true)
         },
         enabled = isEnabled,
